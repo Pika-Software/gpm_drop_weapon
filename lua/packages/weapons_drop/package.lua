@@ -1,5 +1,6 @@
 Name = "Weapons Drop"
 Description = "Allows you to throw out weapons on the ground."
+OnlyServer = true
 
 Author = "PrikolMen:-b"
 Version = "1.0.0"
