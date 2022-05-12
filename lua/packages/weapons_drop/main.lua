@@ -1,5 +1,10 @@
 if (SERVER) then
 
+    local remove_time = CreateConVar("weapon_remove_time", "10", FCVAR_ARCHIVE, " - Time to remove dropped weapons.", -1, 900 ):GetInt()
+    cvars.AddChangeCallback("weapon_remove_time", function( name, old, new )
+        remove_time = tonumber( new )
+    end, "Weapons Drop")
+
     local blacklist = {
         ["weapon_physgun"] = true,
         ["gmod_tool"] = true
@@ -22,7 +27,7 @@ if (SERVER) then
 
             ply:DropWeapon( wep )
 
-            timer.Simple(5, function()
+            timer.Simple(remove_time, function()
                 if IsValid( wep ) then
                     if IsValid( wep:GetOwner() ) then
                         return
@@ -41,7 +46,7 @@ if (SERVER) then
         end
     end
 
-    concommand.Add( "drop", DropActive )
+    concommand.Add( "drop", DropActive, nil, " - Drop active weapon." )
     hook.Add( "DoPlayerDeath", "GPM.WeaponDrop", DropActive )
 
     local commands = {
