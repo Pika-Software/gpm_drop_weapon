@@ -1,4 +1,4 @@
-Name = "Weapons Drop"
+Name = "Drop Weapon"
 Description = "Allows you to throw out weapons on the ground."
 OnlyServer = true
 
