@@ -3,7 +3,7 @@ Description = "Allows you to throw out weapons on the ground."
 OnlyServer = true
 
 Author = "PrikolMen:-b"
-Version = "1.1.0"
+Version = "1.1.1"
 License = "MIT"
 
 Dependencies = {

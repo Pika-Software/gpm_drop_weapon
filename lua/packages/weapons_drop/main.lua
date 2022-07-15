@@ -20,6 +20,7 @@ if (SERVER) then
                 return
             end
 
+
             if (wep:GetWeaponWorldModel() == "") then
                 wep:Remove()
                 return
@@ -27,16 +28,22 @@ if (SERVER) then
 
             ply:DropWeapon( wep )
 
-            timer.Simple(remove_time, function()
-                if IsValid( wep ) then
-                    if IsValid( wep:GetOwner() ) then
-                        return
+            local phys = wep:GetPhysicsObject()
+            if IsValid( phys ) then
+                timer.Simple(remove_time, function()
+                    if IsValid( wep ) then
+                        if IsValid( wep:GetOwner() ) then
+                            return
+                        end
+
+                        SafeRemoveEntity( wep )
                     end
+                end)
 
-                    SafeRemoveEntity( wep )
-                end
-            end)
+                return
+            end
 
+            wep:Remove()
         end
     end
 
